@@ -1,20 +1,26 @@
 package ru.practicum.server.exception;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.List;
 
 @Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class ApiError {
 
-    private final List<String> errors;
+    private List<String> errors;
 
-    private final String message;
+    private String message;
 
-    private final String reason;
+    private String reason;
 
-    private final String status;
+    private String status;
 
-    private final String timestamp;
+    private String timestamp;
 
 }

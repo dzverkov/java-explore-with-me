@@ -1,6 +1,5 @@
 package ru.practicum.server.categories.dto;
 
-import com.sun.istack.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

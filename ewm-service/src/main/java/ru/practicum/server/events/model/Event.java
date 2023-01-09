@@ -29,10 +29,10 @@ public class Event {
     private Category category;
 
     @Column(name = "confirmed_requests")
-    private Long confirmedRequests;
+    private Long confirmedRequests = 0L;
 
     @Column(name = "created_on")
-    private LocalDateTime createdOn;
+    private LocalDateTime createdOn = LocalDateTime.now();
 
     private String description;
 
@@ -43,27 +43,32 @@ public class Event {
     @JoinColumn(name = "initiator_id", referencedColumnName = "id")
     private User initiator;
 
-    @ManyToOne
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "location_id", referencedColumnName = "id")
     private Location location;
 
-    private Boolean paid;
+    private Boolean paid = false;
 
     @Column(name = "participant_limit")
     private Integer participantLimit;
 
     @Column(name = "published_on")
-    private  LocalDateTime publishedOn;
+    private LocalDateTime publishedOn;
 
     @Column(name = "request_moderation")
     private Boolean requestModeration;
 
-    private EventState state;
+    @Enumerated(EnumType.STRING)
+    private EventState state = EventState.PENDING;
 
     private String title;
 
-    private Long views;
+    private Long views = 0L;
 
     @ManyToMany(mappedBy = "events")
     private List<Compilation> compilations = new ArrayList<>();
+
+    public Event(Long id) {
+        this.id = id;
+    }
 }

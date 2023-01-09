@@ -23,10 +23,33 @@
 	</properties>
 
 	<modules>
-		<module>ewm-gateway</module>
 		<module>ewm-service</module>
 		<module>stats-server</module>
 	</modules>
+
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>com.querydsl</groupId>
+				<artifactId>querydsl-apt</artifactId>
+				<version>${querydsl.version}</version>
+				<scope>provided</scope>
+			</dependency>
+
+			<dependency>
+				<groupId>com.querydsl</groupId>
+				<artifactId>querydsl-jpa</artifactId>
+				<version>${querydsl.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>com.querydsl</groupId>
+				<artifactId>querydsl-core</artifactId>
+				<version>${querydsl.version}</version>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+
 
 	<build>
 		<pluginManagement>

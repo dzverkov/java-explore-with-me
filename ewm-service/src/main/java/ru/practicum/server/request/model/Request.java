@@ -19,7 +19,7 @@ public class Request {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private LocalDateTime created;
+    private LocalDateTime created = LocalDateTime.now();
 
     @ManyToOne
     @JoinColumn(name = "event_id", referencedColumnName = "id")
@@ -29,6 +29,7 @@ public class Request {
     @JoinColumn(name = "requester_id", referencedColumnName = "id")
     private User requester;
 
-    private RequestStatus status;
+    @Enumerated(EnumType.STRING)
+    private RequestStatus status = RequestStatus.PENDING;
 
 }

@@ -1,5 +1,6 @@
 package ru.practicum.server.events.dto;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -21,6 +22,7 @@ public class UpdateEventRequestDto {
     @Size(min = 20, max = 7000, message = "Размер поля description должна быть в диапазоне от 20 до 7000")
     private String description;
 
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime eventDate;
 
     @NotNull

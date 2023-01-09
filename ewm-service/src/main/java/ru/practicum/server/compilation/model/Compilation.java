@@ -2,6 +2,7 @@ package ru.practicum.server.compilation.model;
 
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import ru.practicum.server.events.model.Event;
@@ -11,6 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Data
+@Builder(toBuilder = true)
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
@@ -35,5 +37,5 @@ public class Compilation {
     private Boolean pinned;
 
     @Column(name = "title", nullable = false)
-    private  String title;
+    private String title;
 }
