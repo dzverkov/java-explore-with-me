@@ -38,7 +38,7 @@ public class CompilationController {
     /////////////////////////////////////
 
     @GetMapping(PUBLIC_COMPILATIONS_PATH)
-    ResponseEntity<Object> getCompilationsPublic(
+    public ResponseEntity<Object> getCompilationsPublic(
             @RequestParam(required = false) Boolean pinned,
             @RequestParam(required = false, defaultValue = "0") @PositiveOrZero Integer from,
             @RequestParam(required = false, defaultValue = "10") @Positive Integer size
@@ -52,7 +52,7 @@ public class CompilationController {
     }
 
     @GetMapping(PUBLIC_COMPILATIONS_PATH + "/{compId}")
-    ResponseEntity<Object> getCompilationByIdPublic(
+    public ResponseEntity<Object> getCompilationByIdPublic(
             @PathVariable @Positive Long compId
     ) {
         log.info("Получен запрос GET на получение подборки событий compId: {}.", compId);
@@ -67,7 +67,7 @@ public class CompilationController {
     /////////////////////////////////////
 
     @PostMapping(ADMIN_COMPILATIONS_PATH)
-    ResponseEntity<Object> addCompilationAdmin(
+    public ResponseEntity<Object> addCompilationAdmin(
             @RequestBody @Valid NewCompilationDto newCompilationDto
     ) {
         log.info("Получен запрос POST на добавление подборки событий.");
@@ -77,7 +77,7 @@ public class CompilationController {
     }
 
     @DeleteMapping(ADMIN_COMPILATIONS_PATH + "/{compId}")
-    ResponseEntity<Object> deleteCompilationAdmin(
+    public ResponseEntity<Object> deleteCompilationAdmin(
             @PathVariable @Positive Long compId
     ) {
         log.info("Получен запрос DELETE на удаление подборки событий.");
@@ -86,7 +86,7 @@ public class CompilationController {
     }
 
     @DeleteMapping(ADMIN_COMPILATIONS_PATH + "/{compId}/events/{eventId}")
-    ResponseEntity<Object> deleteEventFromCompilationAdmin(
+    public ResponseEntity<Object> deleteEventFromCompilationAdmin(
             @PathVariable @Positive Long compId,
             @PathVariable @Positive Long eventId
     ) {
@@ -96,7 +96,7 @@ public class CompilationController {
     }
 
     @PatchMapping(ADMIN_COMPILATIONS_PATH + "/{compId}/events/{eventId}")
-    ResponseEntity<Object> addEventToCompilationAdmin(
+    public ResponseEntity<Object> addEventToCompilationAdmin(
             @PathVariable @Positive Long compId,
             @PathVariable @Positive Long eventId
     ) {
@@ -106,20 +106,20 @@ public class CompilationController {
     }
 
     @DeleteMapping(ADMIN_COMPILATIONS_PATH + "/{compId}/pin")
-    ResponseEntity<Object> unpinCompilationAdmin(
+    public ResponseEntity<Object> unpinCompilationAdmin(
             @PathVariable @Positive Long compId
     ) {
         log.info("Получен запрос DELETE на открепление подборки событий.");
-        compilationsService.unpinCompilationAdmin(compId);
+        compilationsService.setPinnedCompilationAdmin(compId, false);
         return ResponseEntity.ok().build();
     }
 
     @PatchMapping(ADMIN_COMPILATIONS_PATH + "/{compId}/pin")
-    ResponseEntity<Object> pinCompilationAdmin(
+    public ResponseEntity<Object> pinCompilationAdmin(
             @PathVariable @Positive Long compId
     ) {
         log.info("Получен запрос PATCH на закрепление подборки событий.");
-        compilationsService.pinCompilationAdmin(compId);
+        compilationsService.setPinnedCompilationAdmin(compId, true);
         return ResponseEntity.ok().build();
     }
 

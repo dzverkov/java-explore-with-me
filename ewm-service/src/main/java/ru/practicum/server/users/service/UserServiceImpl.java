@@ -29,12 +29,11 @@ public class UserServiceImpl implements UserService {
     @Override
     public User addUser(User newUser) {
 
-        Optional<User> user = userRepository.findUserByName(newUser.getName());
+        Optional<User> user = userRepository.findUserByEmail(newUser.getEmail());
 
         if (user.isPresent()) {
-            throw new ConflictException("Такой пользователь уже существует");
+            throw new ConflictException("Такой пользователь уже существует, email: " + newUser.getEmail());
         }
-
         return userRepository.save(newUser);
     }
 

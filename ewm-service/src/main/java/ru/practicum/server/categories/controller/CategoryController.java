@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.*;
 import ru.practicum.server.categories.dto.CategoryDto;
 import ru.practicum.server.categories.dto.NewCategoryDto;
 import ru.practicum.server.categories.model.Category;
-import ru.practicum.server.categories.repository.CategoryRepository;
 import ru.practicum.server.categories.service.CategoryService;
 
 import javax.validation.Valid;
@@ -26,10 +25,8 @@ import java.util.stream.Collectors;
 public class CategoryController {
     private static final String ADMIN_CATEGORY_PATH = "/admin/categories";
     private static final String PUBLIC_CATEGORY_PATH = "/categories";
-    private final CategoryRepository categoryRepository;
     private final CategoryService categoryService;
     private final CategoryMapper mapper = Mappers.getMapper(CategoryMapper.class);
-
 
     /////////////////////////////////////
     // Public: Категории
@@ -37,7 +34,7 @@ public class CategoryController {
     /////////////////////////////////////
 
     @GetMapping(PUBLIC_CATEGORY_PATH)
-    ResponseEntity<Object> getAllCategories(
+    public ResponseEntity<Object> getAllCategories(
             @RequestParam(required = false, defaultValue = "0") @PositiveOrZero Integer from,
             @RequestParam(required = false, defaultValue = "10") @Positive Integer size
     ) {
@@ -48,7 +45,7 @@ public class CategoryController {
     }
 
     @GetMapping(PUBLIC_CATEGORY_PATH + "/{catId}")
-    ResponseEntity<Object> getCategoryById(
+    public ResponseEntity<Object> getCategoryById(
             @PathVariable @Positive Long catId
     ) {
         log.info("Получен запрос GET на получение категории с Id: {}.", catId);
@@ -61,7 +58,7 @@ public class CategoryController {
     /////////////////////////////////////
 
     @PatchMapping(ADMIN_CATEGORY_PATH)
-    ResponseEntity<Object> updateCategory(
+    public ResponseEntity<Object> updateCategory(
             @RequestBody @Valid CategoryDto categoryDto) {
 
         log.info("Получен запрос PATCH на изменение категории, параметр: {}.", categoryDto);
@@ -70,7 +67,7 @@ public class CategoryController {
     }
 
     @PostMapping(ADMIN_CATEGORY_PATH)
-    ResponseEntity<Object> addCategory(
+    public ResponseEntity<Object> addCategory(
             @RequestBody @Valid NewCategoryDto newCategoryDto) {
 
         log.info("Получен запрос POST на добавление категории, параметр: {}.", newCategoryDto);
@@ -79,7 +76,7 @@ public class CategoryController {
     }
 
     @DeleteMapping(ADMIN_CATEGORY_PATH + "/{catId}")
-    ResponseEntity<Object> deleteCategory(
+    public ResponseEntity<Object> deleteCategory(
             @PathVariable @Positive Long catId) {
         log.info("Получен запрос DELETE на удаление категории с Id:{}.", catId);
         categoryService.deleteCategory(catId);

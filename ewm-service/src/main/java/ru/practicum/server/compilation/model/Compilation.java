@@ -1,20 +1,18 @@
 package ru.practicum.server.compilation.model;
 
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import ru.practicum.server.events.model.Event;
 
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
-@Data
+@Getter
+@Setter
+@NoArgsConstructor
 @Builder(toBuilder = true)
 @AllArgsConstructor
-@NoArgsConstructor
 @Entity
 @Table(name = "compilations", schema = "public")
 public class Compilation {

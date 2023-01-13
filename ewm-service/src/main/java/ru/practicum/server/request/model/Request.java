@@ -1,16 +1,16 @@
 package ru.practicum.server.request.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 import ru.practicum.server.events.model.Event;
 import ru.practicum.server.users.model.User;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
-@Data
-@AllArgsConstructor
+@Getter
+@Setter
 @NoArgsConstructor
 @Entity
 @Table(name = "requests", schema = "public")

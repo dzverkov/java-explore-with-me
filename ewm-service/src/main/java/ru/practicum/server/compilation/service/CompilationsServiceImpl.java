@@ -34,27 +34,21 @@ public class CompilationsServiceImpl implements CompilationsService {
         Pageable pageable = PageRequest.of(page, size);
 
         QCompilation compilation = QCompilation.compilation;
-
         BooleanBuilder booleanBuilder = new BooleanBuilder();
 
         if (pinned != null) {
             booleanBuilder.and(compilation.pinned.eq(pinned));
-
         }
-
         Predicate predicate = booleanBuilder.getValue();
         if (predicate != null) {
             return compilationRepository.findAll(booleanBuilder.getValue(), pageable).getContent();
         } else {
             return compilationRepository.findAll(pageable).getContent();
         }
-
-
     }
 
     @Override
     public Compilation getCompilationByIdPublic(Long compId) {
-
         return compilationRepository.findById(compId)
                 .orElseThrow(() -> new CompilationNotFoundException(compId));
     }
@@ -66,7 +60,6 @@ public class CompilationsServiceImpl implements CompilationsService {
 
         List<Event> events = eventRepository.getEventsByIdIn(eventsIds);
         newCompilation.setEvents(events);
-
         return compilationRepository.save(newCompilation);
     }
 
@@ -75,7 +68,6 @@ public class CompilationsServiceImpl implements CompilationsService {
 
         compilationRepository.findById(compId)
                 .orElseThrow(() -> new CompilationNotFoundException(compId));
-
         compilationRepository.deleteById(compId);
     }
 
@@ -99,24 +91,15 @@ public class CompilationsServiceImpl implements CompilationsService {
 
         Event event = eventRepository.findById(eventId)
                 .orElseThrow(() -> new EventNotFoundException(eventId));
-
         compilation.getEvents().add(event);
         compilationRepository.save(compilation);
     }
 
     @Override
-    public void unpinCompilationAdmin(Long compId) {
+    public void setPinnedCompilationAdmin(Long compId, boolean pinned) {
         Compilation compilation = compilationRepository.findById(compId)
                 .orElseThrow(() -> new CompilationNotFoundException(compId));
-        compilation.setPinned(false);
-        compilationRepository.save(compilation);
-    }
-
-    @Override
-    public void pinCompilationAdmin(Long compId) {
-        Compilation compilation = compilationRepository.findById(compId)
-                .orElseThrow(() -> new CompilationNotFoundException(compId));
-        compilation.setPinned(true);
+        compilation.setPinned(pinned);
         compilationRepository.save(compilation);
     }
 }

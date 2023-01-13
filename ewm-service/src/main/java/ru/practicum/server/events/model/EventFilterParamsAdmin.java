@@ -9,9 +9,9 @@ import java.util.List;
 @Data
 @AllArgsConstructor
 public class EventFilterParamsAdmin {
-    List<Long> users;
-    List<EventState> states;
-    List<Long> categories;
-    LocalDateTime rangeStart;
-    LocalDateTime rangeEnd;
+    private List<Long> users;
+    private List<EventState> states;
+    private List<Long> categories;
+    private LocalDateTime rangeStart;
+    private LocalDateTime rangeEnd;
 }

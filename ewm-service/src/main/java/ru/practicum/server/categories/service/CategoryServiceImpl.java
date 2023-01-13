@@ -37,12 +37,12 @@ public class CategoryServiceImpl implements CategoryService {
         categoryRepository.findById(updCategory.getId())
                 .orElseThrow(() -> new NotFoundException("Категория с id: " + updCategory.getId() + " не найдена."));
 
-        Optional<Category> category = categoryRepository.findByName(updCategory.getName());
+        Optional<Category> category = categoryRepository.findByNameAndIdIsNot(
+                updCategory.getName(), updCategory.getId());
 
         if (category.isPresent()) {
             throw new ConflictException("Такая категория уже существует");
         }
-
         return categoryRepository.save(updCategory);
     }
 
@@ -54,7 +54,6 @@ public class CategoryServiceImpl implements CategoryService {
         if (category.isPresent()) {
             throw new ConflictException("Такая категория уже существует");
         }
-
         return categoryRepository.save(newCategory);
     }
 

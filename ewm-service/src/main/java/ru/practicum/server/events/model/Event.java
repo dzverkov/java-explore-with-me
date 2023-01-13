@@ -28,7 +28,7 @@ public class Event {
     @JoinColumn(name = "category_id", referencedColumnName = "id")
     private Category category;
 
-    @Column(name = "confirmed_requests")
+    @Transient
     private Long confirmedRequests = 0L;
 
     @Column(name = "created_on")
@@ -63,6 +63,7 @@ public class Event {
 
     private String title;
 
+    @Transient
     private Long views = 0L;
 
     @ManyToMany(mappedBy = "events")

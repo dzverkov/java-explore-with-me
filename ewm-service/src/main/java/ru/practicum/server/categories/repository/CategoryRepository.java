@@ -13,5 +13,7 @@ public interface CategoryRepository extends PagingAndSortingRepository<Category,
 
     Page<Category> findAll(Pageable pageable);
 
+    Optional<Category> findByNameAndIdIsNot(String name, Long id);
+
     Optional<Category> findByName(String name);
 }

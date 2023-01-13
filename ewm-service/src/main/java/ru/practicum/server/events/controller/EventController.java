@@ -50,7 +50,7 @@ public class EventController {
     /////////////////////////////////////
 
     @GetMapping(PUBLIC_EVENT_PATH)
-    ResponseEntity<Object> getAllEventsPublic(
+    public ResponseEntity<Object> getAllEventsPublic(
             @RequestParam(required = false) String text,
             @RequestParam(required = false) List<Long> categories,
             @RequestParam(required = false) Boolean paid,
@@ -72,7 +72,7 @@ public class EventController {
     }
 
     @GetMapping(PUBLIC_EVENT_PATH + "/{id}")
-    ResponseEntity<Object> getEventByIdPublic(
+    public ResponseEntity<Object> getEventByIdPublic(
             @PathVariable @Positive Long id,
             HttpServletRequest request
     ) {
@@ -88,7 +88,7 @@ public class EventController {
     /////////////////////////////////////
 
     @GetMapping(PRIVATE_EVENT_PATH + "/{userId}/events")
-    ResponseEntity<Object> getAllEventsByUserPrivate(
+    public ResponseEntity<Object> getAllEventsByUserPrivate(
             @PathVariable @Positive Long userId,
             @RequestParam(required = false, defaultValue = "0") @PositiveOrZero Integer from,
             @RequestParam(required = false, defaultValue = "10") @Positive Integer size
@@ -100,7 +100,7 @@ public class EventController {
     }
 
     @PatchMapping(PRIVATE_EVENT_PATH + "/{userId}/events")
-    ResponseEntity<Object> updateEventByUserPrivate(
+    public ResponseEntity<Object> updateEventByUserPrivate(
             @PathVariable @Positive Long userId,
             @RequestBody @Valid UpdateEventRequestDto updateEventRequestDto
     ) {
@@ -111,7 +111,7 @@ public class EventController {
     }
 
     @PostMapping(PRIVATE_EVENT_PATH + "/{userId}/events")
-    ResponseEntity<Object> addEventByUserPrivate(
+    public ResponseEntity<Object> addEventByUserPrivate(
             @PathVariable @Positive Long userId,
             @RequestBody @Valid NewEventDto newEventDto
     ) {
@@ -121,7 +121,7 @@ public class EventController {
     }
 
     @GetMapping(PRIVATE_EVENT_PATH + "/{userId}/events/{eventId}")
-    ResponseEntity<Object> getEventByUserIdAndEventIdPrivate(
+    public ResponseEntity<Object> getEventByUserIdAndEventIdPrivate(
             @PathVariable @Positive Long userId,
             @PathVariable @Positive Long eventId
     ) {
@@ -132,7 +132,7 @@ public class EventController {
     }
 
     @PatchMapping(PRIVATE_EVENT_PATH + "/{userId}/events/{eventId}")
-    ResponseEntity<Object> cancellationEventByUserIdAndEventIdPrivate(
+    public ResponseEntity<Object> cancellationEventByUserIdAndEventIdPrivate(
             @PathVariable @Positive Long userId,
             @PathVariable @Positive Long eventId
     ) {
@@ -144,7 +144,7 @@ public class EventController {
     }
 
     @GetMapping(PRIVATE_EVENT_PATH + "/{userId}/events/{eventId}/requests")
-    ResponseEntity<Object> getEventRequestsByUserPrivate(
+    public ResponseEntity<Object> getEventRequestsByUserPrivate(
             @PathVariable @Positive Long userId,
             @PathVariable @Positive Long eventId
     ) {
@@ -157,7 +157,7 @@ public class EventController {
     }
 
     @PatchMapping(PRIVATE_EVENT_PATH + "/{userId}/events/{eventId}/requests/{reqId}/confirm")
-    ResponseEntity<Object> confirmEventRequestsByUserPrivate(
+    public ResponseEntity<Object> confirmEventRequestsByUserPrivate(
             @PathVariable @Positive Long userId,
             @PathVariable @Positive Long eventId,
             @PathVariable @Positive Long reqId
@@ -169,7 +169,7 @@ public class EventController {
     }
 
     @PatchMapping(PRIVATE_EVENT_PATH + "/{userId}/events/{eventId}/requests/{reqId}/reject")
-    ResponseEntity<Object> rejectEventRequestsByUserPrivate(
+    public ResponseEntity<Object> rejectEventRequestsByUserPrivate(
             @PathVariable @Positive Long userId,
             @PathVariable @Positive Long eventId,
             @PathVariable @Positive Long reqId
@@ -186,7 +186,7 @@ public class EventController {
     /////////////////////////////////////
 
     @GetMapping(ADMIN_EVENT_PATH)
-    ResponseEntity<Object> getAllEventsAdmin(
+    public ResponseEntity<Object> getAllEventsAdmin(
             @RequestParam(required = false) List<Long> users,
             @RequestParam(required = false) List<EventState> states,
             @RequestParam(required = false) List<Long> categories,
@@ -204,7 +204,7 @@ public class EventController {
     }
 
     @PutMapping(ADMIN_EVENT_PATH + "/{eventId}")
-    ResponseEntity<Object> updateEventAdmin(
+    public ResponseEntity<Object> updateEventAdmin(
             @PathVariable @Positive Long eventId,
             @RequestBody AdminUpdateEventRequestDto adminUpdateEventRequestDto
     ) {
@@ -214,7 +214,7 @@ public class EventController {
     }
 
     @PatchMapping(ADMIN_EVENT_PATH + "/{eventId}/publish")
-    ResponseEntity<Object> publishEventAdmin(
+    public ResponseEntity<Object> publishEventAdmin(
             @PathVariable @Positive Long eventId
     ) {
         Event event = eventService.publishEventAdmin(eventId);
@@ -222,7 +222,7 @@ public class EventController {
     }
 
     @PatchMapping(ADMIN_EVENT_PATH + "/{eventId}/reject")
-    ResponseEntity<Object> rejectEventAdmin(
+    public ResponseEntity<Object> rejectEventAdmin(
             @PathVariable @Positive Long eventId
     ) {
         Event event = eventService.rejectEventAdmin(eventId);

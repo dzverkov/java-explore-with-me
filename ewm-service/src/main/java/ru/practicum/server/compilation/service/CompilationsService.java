@@ -17,7 +17,6 @@ public interface CompilationsService {
 
     void addEventToCompilationAdmin(Long compId, Long eventId);
 
-    void unpinCompilationAdmin(Long compId);
+    void setPinnedCompilationAdmin(Long compId, boolean pinned);
 
-    void pinCompilationAdmin(Long compId);
 }

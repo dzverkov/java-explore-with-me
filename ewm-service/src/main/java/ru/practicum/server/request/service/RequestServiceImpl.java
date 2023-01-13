@@ -80,7 +80,6 @@ public class RequestServiceImpl implements RequestService {
         if (!request.getRequester().getId().equals(userId)) {
             throw new ValidationException("Запрос подавал другой пользователь. Отменить можно только свой запрос.");
         }
-
         request.setStatus(RequestStatus.CANCELED);
 
         return requestRepository.save(request);

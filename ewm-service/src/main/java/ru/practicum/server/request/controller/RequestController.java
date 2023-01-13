@@ -30,7 +30,7 @@ public class RequestController {
     /////////////////////////////////////
 
     @GetMapping("/{userId}/requests")
-    ResponseEntity<Object> getRequestsByUserId(
+    public ResponseEntity<Object> getRequestsByUserId(
             @PathVariable @Positive Long userId
     ) {
         log.info("Получен запрос GET на получение запросов пользователя userId: {} на события.", userId);
@@ -40,7 +40,7 @@ public class RequestController {
     }
 
     @PostMapping("/{userId}/requests")
-    ResponseEntity<Object> addRequest(
+    public ResponseEntity<Object> addRequest(
             @PathVariable @Positive Long userId,
             @RequestParam Long eventId
     ) {
@@ -52,7 +52,7 @@ public class RequestController {
     }
 
     @PatchMapping("/{userId}/requests/{requestId}/cancel")
-    ResponseEntity<Object> cancelRequest(
+    public ResponseEntity<Object> cancelRequest(
             @PathVariable @Positive Long userId,
             @PathVariable @Positive Long requestId
     ) {

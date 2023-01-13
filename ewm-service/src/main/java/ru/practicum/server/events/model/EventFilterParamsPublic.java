@@ -9,11 +9,11 @@ import java.util.List;
 @Data
 @AllArgsConstructor
 public class EventFilterParamsPublic {
-    String text;
-    List<Long> categories;
-    Boolean paid;
-    LocalDateTime rangeStart;
-    LocalDateTime rangeEnd;
-    Boolean onlyAvailable;
-    String sort;
+    private String text;
+    private List<Long> categories;
+    private Boolean paid;
+    private LocalDateTime rangeStart;
+    private LocalDateTime rangeEnd;
+    private Boolean onlyAvailable;
+    private String sort;
 }
