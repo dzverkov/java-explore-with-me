@@ -1,8 +1,6 @@
 package ru.practicum.server.events.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import ru.practicum.server.categories.model.Category;
 import ru.practicum.server.compilation.model.Compilation;
 import ru.practicum.server.users.model.User;
@@ -12,8 +10,8 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-@Data
-@AllArgsConstructor
+@Getter
+@Setter
 @NoArgsConstructor
 @Entity
 @Table(name = "events", schema = "public")
