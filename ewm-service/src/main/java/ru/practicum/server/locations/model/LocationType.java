@@ -10,20 +10,11 @@ import javax.persistence.*;
 @Setter
 @NoArgsConstructor
 @Entity
-@Table(name = "event_location", schema = "public")
-public class EventLocation {
+@Table(name = "event_location_type", schema = "public")
+public class LocationType {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String name;
-
-    @ManyToOne
-    @JoinColumn(name = "location_type_id", referencedColumnName = "id")
-    private LocationType locationType;
-
-    private Float lat;
-
-    private Float lon;
-    private Float  radius; // в километрах
 }
